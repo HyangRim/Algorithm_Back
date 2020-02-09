@@ -1,33 +1,37 @@
 #include <iostream>
-#include <algorithm>
-#include <stack>
-#include <queue>
 
 using namespace std;
 
-int N;
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
 
-	cin >> N;
-	queue<int> qt;
-	for (int x = 1; x <= N; x++) {
-		qt.push(x);
+int K, N;
+long long lan[10001];
+long long maxa;
+int main() {
+	cin >> K >> N;
+	for (int x = 0; x < K; x++) {
+		cin >> lan[x];
 	}
-	bool isOne = true;
-	while (qt.size() != 1) {
-		if (isOne) {
-			qt.pop();
-			isOne = false;
+	long long left = 0;
+	long long right = 9876543213;
+	while (left <= right) {
+		long long mid = (left + right) / 2;
+		int result = 0;
+
+		for (int x = 0; x < K; x++) {
+			result += lan[x] / mid;
+		}
+		if (result >= N) {
+			left = mid + 1;
+			if (mid > maxa)
+				maxa = mid;
+			//cout << maxa << "\n";
 		}
 		else {
-			qt.push(qt.front());
-			qt.pop();
-			isOne = true;
+			right = mid - 1;
 		}
 	}
-	cout << qt.front();
+	cout << maxa;
+
+
 	return 0;
 }
