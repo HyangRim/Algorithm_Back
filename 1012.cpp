@@ -1,17 +1,20 @@
 #include <iostream>
-#include <cstring>
-#include <queue>
 #include <vector>
 #include <algorithm>
+#include <cstring>
+
 using namespace std;
 
-bool visited[51][51];
-bool vegeta[51][51];
-int mx[4] = {1,0,-1,0};
-int my[4] = {0,-1,0,1};
 int T, M, N, K;
-
 int cnt = 0;
+bool Vegeta[51][51];
+bool visited[51][51];
+int nx[4] = {1,0,-1,0};
+int ny[4] = { 0,-1,0,1 };
+
+
+int mx[4] = { 1,0,-1,0 };
+int my[4] = { 0,-1,0,1 };
 
 void dfs(int x, int y) {
 	visited[x][y] = true;
@@ -20,31 +23,33 @@ void dfs(int x, int y) {
 		int nx = x + mx[i];
 		int ny = y + my[i];
 		if (0 <= nx && nx < M && 0 <= ny && ny < N) {
-			if (!visited[nx][ny] && vegeta[nx][ny]) {
+			if (!visited[nx][ny] && Vegeta[nx][ny]) {
 				dfs(nx, ny);
 			}
 		}
 	}
 }
 
+
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
+	int a, b;
 	cin >> T;
 	while (T--) {
 		vector<int> v1;
+		memset(Vegeta, false, sizeof(Vegeta));
 		memset(visited, false, sizeof(visited));
-		memset(vegeta, false, sizeof(vegeta));
 		cin >> M >> N >> K;
-		int a, b;
 		for (int x = 0; x < K; x++) {
 			cin >> a >> b;
-			vegeta[a][b] = true;
+			Vegeta[a][b] = true;
 		}
 		for (int x = 0; x < M; x++) {
 			for (int y = 0; y < N; y++) {
-				if (vegeta[x][y] && !visited[x][y]) {
+				if (Vegeta[x][y] && !visited[x][y]) {
 					cnt = 0;
 					dfs(x, y);
 					v1.push_back(cnt);

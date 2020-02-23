@@ -1,2 +1,6 @@
-﻿  1012.cpp
+﻿  4659.cpp
+c:\users\eyiut\desktop\알고리즘\consoleapplication1\consoleapplication1\4659.cpp(21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\eyiut\desktop\알고리즘\consoleapplication1\consoleapplication1\4659.cpp(34): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\eyiut\desktop\알고리즘\consoleapplication1\consoleapplication1\4659.cpp(50): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\eyiut\desktop\알고리즘\consoleapplication1\consoleapplication1\4659.cpp(71): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   ConsoleApplication1.vcxproj -> C:\Users\eyiut\Desktop\알고리즘\ConsoleApplication1\Debug\ConsoleApplication1.exe
