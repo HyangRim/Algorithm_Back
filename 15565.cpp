@@ -8,9 +8,6 @@ int N, K;
 int arr[1000010];
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
 	
 	cin >> N >> K;
 	for (int x = 1; x <= N; x++) {
