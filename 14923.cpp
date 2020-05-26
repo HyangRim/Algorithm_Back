@@ -1,7 +1,6 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#include <Windows.h>
 using namespace std;
 int N, M;
 int hx, hy;
@@ -11,11 +10,11 @@ struct hk {
 };
 int dx[4] = { 1,0,-1,0 };
 int dy[4] = { 0,1,0,-1 };
-int map[1001][1001];
-bool visited[1001][1001];
+int map[1024][1024];
+bool visited[1024][1024][2];
 int bfs() {
 	queue<hk> que;
-	visited[sx][sy] = true;
+	visited[sx][sy][1] = true;
 	que.push({ sx,sy,0,1 });
 
 	while (!que.empty()) {
@@ -32,16 +31,27 @@ int bfs() {
 
 			int nx = x + dx[i];
 			int ny = y + dy[i];
-			if (nx >= 0 && ny >= 0 && nx < N && ny < M) {
-				if (map[nx][ny] == 0 && !visited[nx][ny]) {
-					visited[nx][ny] = true;
+			if (nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
+			if (visited[nx][ny][br]) continue;
+			if (map[nx][ny] == 0) {
+				visited[nx][ny][br] = true;
+				que.push({ nx,ny,time + 1,br });
+			}
+			else if(map[nx][ny] == 1 && br == 1) {
+				visited[nx][ny][br] = true;
+				que.push({ nx,ny,time + 1,br - 1 });
+			}
+			/*if (nx >= 0 && ny >= 0 && nx < N && ny < M) {
+				if (map[nx][ny] == 0 && !visited[nx][ny][br]) {
+					visited[nx][ny][br] = true;
 					que.push({ nx,ny,time + 1,br });
 				}
-				else if (map[nx][ny] == 1 && !visited[nx][ny] && br == 1) {
-					visited[nx][ny] = true;
+				else if (map[nx][ny] == 1 && !visited[nx][ny][br] && br == 1) {
+					visited[nx][ny][br] = true;
 					que.push({ nx,ny,time + 1,br - 1 });
 				}
 			}
+			*/
 		}
 	}
 	return -1;
